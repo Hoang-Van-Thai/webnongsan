@@ -1,0 +1,25 @@
+﻿@model webbannongsan.Models.Product
+@{
+    ViewBag.Title = "DetailProduct";
+}
+<div class="product-details">
+    <div class="product-img">
+        <img src="~/image/product/@Model.Image"/>
+    </div>
+    <div class="nav-product">
+        <h2>@Model.ProductName</h2>
+        <div>@Model.Price.ToString("N0") VND</div>
+        <div>@Model.Quantity</div>
+        <div>@Model.Category.Name</div>
+        <div>@Model.PostingDate</div>
+        <div>@Model.Detail</div>
+        <div class="product-actions">
+
+            <form method="get" action="#">
+                @*<button type="submit" name="buyNow" value="@Model.ProductID">Mua ngay</button>*@
+                <button type="submit" >Mua ngay</button>
+            </form>
+        </div>
+    </div>
+</div>
+

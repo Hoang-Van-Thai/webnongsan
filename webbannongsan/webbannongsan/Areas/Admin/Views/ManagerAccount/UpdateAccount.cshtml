@@ -1,0 +1,80 @@
+﻿@model webbannongsan.Models.Account
+@{
+    ViewBag.Title = "UpdateAccount";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Cập nhật tài khoản</h2>
+<form class="space-y-4" method="post" action="/Admin/ManagerAccount/UpdateAccount">
+    @Html.HiddenFor(m => m.AccountID)
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="FirstName">Họ:</label>
+        <div class="w-3/4">
+            <input type="text" class="input-field" id="FirstName" name="FirstName" value="@Model.FirstName">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="LastName">Tên:</label>
+        <div class="w-3/4">
+            <input type="text" class="input-field" id="LastName" name="LastName" value="@Model.LastName">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="Email">Email:</label>
+        <div class="w-3/4">
+            <input type="text" class="input-field" id="Email" name="Email" value="@Model.Email">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="PhoneNumber">Số điện thoại:</label>
+        <div class="w-3/4">
+            <input type="text" class="input-field" id="PhoneNumber" name="PhoneNumber" value="@Model.PhoneNumber">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="Role">Quyền hạn:</label>
+        <div class="w-3/4">
+            <select id="Role" name="RoleID" class="input-field">
+                
+                @foreach (var role in ViewBag.role)
+                {
+                    <option value="@role.RoleID" @(@role.RoleID==@Model.RoleID?"Selected":"")>@role.RoleID</option>
+                }
+            </select>
+        </div>
+    </div>
+
+
+    <div class="flex items-center">
+        <div class="w-1/4"></div> <!-- Đây là ô trống để căn giữa nút button -->
+        <div class="w-3/4">
+            <p class="text-red-500">@ViewBag.error</p>
+            <button type="submit" class="btn btn-primary mt-4">Lưu thông tin</button>
+        </div>
+    </div>
+
+</form>
+
+
+<style>
+    .input-field {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #D1D5DB; /* gray-300 */
+        border-radius: 0.375rem; /* rounded-md */
+    }
+
+    .btn {
+        padding-left: 1rem; /* px-4 */
+        padding-right: 1rem; /* px-4 */
+        padding-top: 0.5rem; /* py-2 */
+        padding-bottom: 0.5rem; /* py-2 */
+        background-color: #3B82F6; /* blue-500 */
+        color: white;
+        border-radius: 0.375rem; /* rounded-md */
+    }
+
+        .btn:hover {
+            background-color: #2563EB; /* blue-600 */
+        }
+</style>

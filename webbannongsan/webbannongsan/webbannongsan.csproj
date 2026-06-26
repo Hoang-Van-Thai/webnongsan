@@ -1,0 +1,451 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B3D264AB-6B83-4413-8437-11ABD9F51E10}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>webbannongsan</RootNamespace>
+    <AssemblyName>webbannongsan</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44310</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=3.0.2.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.3.0.2\lib\net462\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=4.8.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.4.8.0\lib\net47\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MimeKit, Version=4.8.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.4.8.0\lib\net47\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Formats.Asn1, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Asn1.8.0.1\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\js\main-scripts.js" />
+    <Content Include="Content\AddressProfile.css">
+      <DependentUpon>AddressProfile.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\AddressProfile.min.css">
+      <DependentUpon>AddressProfile.css</DependentUpon>
+    </Content>
+    <Content Include="Content\CartIndex.css">
+      <DependentUpon>CartIndex.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\CartIndex.min.css">
+      <DependentUpon>CartIndex.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ComfirmPassword.css">
+      <DependentUpon>ComfirmPassword.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\ComfirmPassword.min.css">
+      <DependentUpon>ComfirmPassword.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ConfirmOTP.css">
+      <DependentUpon>ConfirmOTP.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\ConfirmOTP.min.css">
+      <DependentUpon>ConfirmOTP.css</DependentUpon>
+    </Content>
+    <Content Include="Content\DetailProduct.css">
+      <DependentUpon>DetailProduct.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\DetailProduct.min.css">
+      <DependentUpon>DetailProduct.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ForgotPassword.css">
+      <DependentUpon>ForgotPassword.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\ForgotPassword.min.css">
+      <DependentUpon>ForgotPassword.css</DependentUpon>
+    </Content>
+    <Content Include="Content\index.min.css">
+      <DependentUpon>index.css</DependentUpon>
+    </Content>
+    <Content Include="Content\input.css" />
+    <Content Include="Content\output.css" />
+    <Content Include="Content\product.css">
+      <DependentUpon>product.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\product.min.css">
+      <DependentUpon>product.css</DependentUpon>
+    </Content>
+    <Content Include="Content\profile.css">
+      <DependentUpon>profile.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\profile.min.css">
+      <DependentUpon>profile.css</DependentUpon>
+    </Content>
+    <Content Include="Content\stylelayout.css" />
+    <Content Include="Content\stylelayout.min.css">
+      <DependentUpon>stylelayout.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\index.css" />
+    <Content Include="Content\UpdateAddress.css">
+      <DependentUpon>UpdateAddress.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\UpdateAddress.min.css">
+      <DependentUpon>UpdateAddress.css</DependentUpon>
+    </Content>
+    <Content Include="Content\UpdatePassword.css">
+      <DependentUpon>UpdatePassword.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\UpdatePassword.min.css">
+      <DependentUpon>UpdatePassword.css</DependentUpon>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="image\cart.png" />
+    <Content Include="image\heart.png" />
+    <Content Include="image\imagedisplay.jpg" />
+    <Content Include="image\logo.png" />
+    <Content Include="image\orange.png" />
+    <Content Include="image\product-img-7.jpg" />
+    <Content Include="image\product\BongNgo.png" />
+    <Content Include="image\product\ChuoiHuuCo.png" />
+    <Content Include="image\product\iSnackbbq.png" />
+    <Content Include="image\product\kiwi.png" />
+    <Content Include="image\product\product-img-7.jpg" />
+    <Content Include="image\product\snack_gao_truyen_thong.png" />
+    <Content Include="image\product\Snack_rong_bien.png" />
+    <Content Include="image\product\TaoMy.png" />
+    <Content Include="image\product\vietquoc.png" />
+    <Content Include="image\send.png" />
+    <Content Include="image\star.png" />
+    <Content Include="image\user.png" />
+    <Content Include="Models\ModelWebNongSan.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelWebNongSan.edmx</DependentUpon>
+      <LastGenOutput>ModelWebNongSan.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelWebNongSan.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelWebNongSan.edmx</DependentUpon>
+      <LastGenOutput>ModelWebNongSan.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagerAccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagerCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagerCouponController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagerOrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
+    <Compile Include="Areas\Admin\Data\DailyStatistic.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Data\OrderDetailViewModel.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Account.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Address.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cart.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Coupon.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\District.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feedback.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Invoice.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InvoiceDetail.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelWebNongSan.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelWebNongSan.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelWebNongSan.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelWebNongSan.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelWebNongSan.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderDetail.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Province.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ward.cs">
+      <DependentUpon>ModelWebNongSan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\ListProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\CreateProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\UpdateProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\UpdateImageProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerAccount\ListAccount.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerAccount\UpdateAccount.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerAccount\UpdateImage.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerCategory\ListCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerCategory\CreateCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerCategory\UpdateCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerCoupon\ListCoupon.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerCoupon\CreateCoupon.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerCoupon\UpdateCoupon.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerOrder\ListOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\OrderStatusStatistics.cshtml" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Content\stylelayout.scss" />
+    <Content Include="Content\index.scss" />
+    <Content Include="Content\Site.scss" />
+    <Content Include="Content\product.scss" />
+    <EntityDeploy Include="Models\ModelWebNongSan.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelWebNongSan.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelWebNongSan.edmx.diagram">
+      <DependentUpon>ModelWebNongSan.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\profile.scss" />
+    <Content Include="Content\AddressProfile.scss" />
+    <Content Include="Content\UpdateAddress.scss" />
+    <Content Include="Content\UpdatePassword.scss" />
+    <Content Include="Content\ConfirmOTP.scss" />
+    <Content Include="Content\ForgotPassword.scss" />
+    <Content Include="Content\ComfirmPassword.scss" />
+    <Content Include="Content\DetailProduct.scss" />
+    <Content Include="Content\CartIndex.scss" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Product\Product.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Product\DetailProduct.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Cart\CartIndex.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\AddressProfile.cshtml" />
+    <Content Include="Views\Account\CreateAddress.cshtml" />
+    <Content Include="Views\Account\UpdateAddress.cshtml" />
+    <Content Include="Views\Account\UpdatePassword.cshtml" />
+    <Content Include="Views\Order\OrderProduct.cshtml" />
+    <Content Include="Views\Shared\_LayoutAccount.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ConfirmOTP.cshtml" />
+    <Content Include="Views\Account\ComfirmPassword.cshtml" />
+    <Content Include="Views\Account\OrderCustomer.cshtml" />
+    <Content Include="Views\Cart\UpdateCart.cshtml" />
+    <Content Include="Views\Cart\ConfirmOrder.cshtml" />
+    <Content Include="Views\Cart\Payment.cshtml" />
+    <Content Include="Views\Cart\PaymentReturn.cshtml" />
+    <Content Include="Views\Payment\ConfirmPaymentClient.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Order\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57996</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44310/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\BuildWebCompiler.1.12.405\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildWebCompiler.1.12.405\build\BuildWebCompiler.targets'))" />
+  </Target>
+  <Import Project="..\packages\BuildWebCompiler.1.12.405\build\BuildWebCompiler.targets" Condition="Exists('..\packages\BuildWebCompiler.1.12.405\build\BuildWebCompiler.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

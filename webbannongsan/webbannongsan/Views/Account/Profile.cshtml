@@ -1,0 +1,36 @@
+﻿@model webbannongsan.Models.Account
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+
+}
+
+<h2>Thông tin tài khoản</h2>
+<form action="/Account/Profile" method="post">
+
+
+    <div class="form-group">
+        <label for="ho">Họ:</label>
+        <input type="text" id="ho" name="FirstName" class="form-control" value="@Model.FirstName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="ten">Tên:</label>
+        <input type="text" id="ten" name="LastName" class="form-control" value="@Model.LastName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="Email" class="form-control" value="@Model.Email" required>
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Số điện thoại:</label>
+        <input type="text" id="phone" name="PhoneNumber" class="form-control" value="@Model.PhoneNumber" required>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </div>
+
+
+</form>

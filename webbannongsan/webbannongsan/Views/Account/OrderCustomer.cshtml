@@ -1,0 +1,39 @@
+﻿@model List<webbannongsan.Data.OrderDetailViewModel>
+@{
+    ViewBag.Title = "OrderCustomer";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+<h2 class="text-2xl font-semibold mb-4">Chi tiết đơn hàng</h2>
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-300">
+        <thead>
+            <tr class="bg-gray-200 text-gray-700 text-left">
+                <th class="py-2 px-4 border-b">Thời gian</th>
+                <th class="py-2 px-4 border-b">Trạng thái</th>
+                <th class="py-2 px-4 border-b">Địa chỉ mặc định</th>
+                <th class="py-2 px-4 border-b">Giá đơn hàng</th>
+                <th class="py-2 px-4 border-b">Tên sản phẩm</th>
+                <th class="py-2 px-4 border-b">Số lượng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="hover:bg-gray-100 transition duration-150 ease-in-out">
+                    <td class="py-2 px-4 border-b">@item.OrderTime</td>
+                    <td class="py-2 px-4 border-b">@item.StatusOrder</td>
+                    <td class="py-2 px-4 border-b">@item.DefaultAddress</td>
+                    <td class="py-2 px-4 border-b">@item.OrderPrice.ToString("N0") VND</td>
+                    <td class="py-2 px-4 border-b">@item.ProductName</td>
+                    <td class="py-2 px-4 border-b">@item.Quantity</td>
+
+
+
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

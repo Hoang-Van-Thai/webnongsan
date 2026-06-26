@@ -1,0 +1,124 @@
+﻿@model List<webbannongsan.Models.Product>
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script type="text/javascript">
+        alert('@Html.Raw(TempData["SuccessMessage"])');
+    </script>
+}
+
+<h2 class="text-2xl font-bold mb-4">Danh Sách Sản Phẩm</h2>
+
+<div class="flex">
+    <!-- Bộ lọc sản phẩm -->
+    <div class="w-1/4 bg-white p-4 rounded shadow mr-4">
+        <form class="filter-product">
+            <h3 class="text-lg font-semibold mb-4">Lọc Sản Phẩm</h3>
+            <div class="filter-section mb-4">
+                <label for="price-range" class="block mb-2 font-semibold">Khoảng giá</label>
+                <select id="price-range" name="priceRange" class="border border-gray-300 rounded px-2 py-1 w-full">
+                    <option value="all">Tất cả</option>
+                    <option value="0-100000">Dưới 100,000</option>
+                    <option value="100000-500000">100,000 - 500,000</option>
+                    <option value="500000-1000000">500,000 - 1,000,000</option>
+                    <option value="1000000-2000000">1,000,000 - 2,000,000</option>
+                    <option value="2000000-9000000">Trên 2,000,000</option>
+                </select>
+            </div>
+            <div class="filter-section mb-4">
+                <label for="category" class="block mb-2 font-semibold">Danh mục</label>
+                <select id="category" name="category" class="border border-gray-300 rounded px-2 py-1 w-full">
+                    <option value="all">Tất cả</option>
+                    @foreach (var category in @ViewBag.categories)
+                    {
+                        <option>@category.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="filter-section mb-4">
+                <h4 class="font-semibold">Giảm giá</h4>
+                <label for="all-product" class="block">
+                    <input type="radio" value="null" name="discount" id="all-product" class="mr-2" />
+                    <span>Tất cả</span>
+                </label>
+                <label for="discount-20" class="block">
+                    <input type="radio" value="27" name="discount" id="discount-20" class="mr-2" />
+                    <span>20%</span>
+                </label>
+                <label for="discount-30" class="block">
+                    <input type="radio" value="30" name="discount" id="discount-30" class="mr-2" />
+                    <span>30%</span>
+                </label>
+                <label for="discount-40" class="block">
+                    <input type="radio" value="31" name="discount" id="discount-40" class="mr-2" />
+                    <span>40%</span>
+                </label>
+                <label for="discount-50" class="block">
+                    <input type="radio" value="28" name="discount" id="discount-50" class="mr-2" />
+                    <span>50%</span>
+                </label>
+            </div>
+            <button class="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-200 w-full" type="submit">Lọc Sản Phẩm</button>
+            <a href="/Admin/ProductAdmin/CreateProduct" class="block text-blue-500 hover:underline mt-4 text-center">Thêm mới</a>
+        </form>
+    </div>
+
+    <!-- Danh sách sản phẩm -->
+    <div class="w-3/4">
+        <table class="min-w-full bg-white border border-gray-300">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="border text-center p-2">ProductID</th>
+                    <th class="border text-center p-2">Hình ảnh</th>
+                    <th class="border text-center p-2">Tên sản phẩm</th>
+                    <th class="border text-center p-2">Giá bán</th>
+                    <th class="border text-center p-2" style="width:100px">Số lượng</th>
+                    <th class="border text-center p-2" style="width:100px">Đơn vị</th>
+                    <th class="border text-center p-2">Ngày sản xuất</th>
+                    <th class="border text-center p-2">Mô tả</th>
+                    <th class="border text-center p-2">Danh mục</th>
+                    <th class="border text-center p-2">Giảm giá</th>
+                    <th class="border text-center p-2">Hành động</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-600 text-sm font-light">
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-100 transition duration-200">
+                        <td class="border text-center p-2">@item.ProductID</td>
+                        <td class="border text-center p-2 flex items-center justify-center">
+                            <img src="~/image/product/@item.Image" alt="@item.ProductName" class="h-24 w-24 object-cover" />
+                            <a href="/Admin/ProductAdmin/UpdateImageProduct?id=@item.ProductID" class="text-green-500 hover:bg-green-100 rounded-full p-2 ml-2 transition duration-200" title="Thêm ảnh">
+                                <i class="fas fa-upload"></i>
+                            </a>
+                        </td>
+                        <td class="border text-center p-2">@item.ProductName</td>
+                        <td class="border text-center p-2 text-right">@item.Price.ToString("#,0")</td>
+                        <td class="border text-center p-2 text-right">@item.Quantity</td>
+                        <td class="border text-center p-2 text-right">@item.Unit</td>
+                        <td class="border text-center p-2 text-right">@item.PostingDate.ToShortDateString()</td>
+                        <td class="border text-center p-2">@item.Detail</td>
+                        <td class="border text-center p-2">@item.CategoryID</td>
+                        <td class="border text-center p-2">@item.CouponID</td>
+                        <td class="border text-center p-2 flex justify-center items-center">
+                            <a href="/Admin/ProductAdmin/UpdateProduct?id=@item.ProductID" class="text-blue-500 hover:bg-blue-100 rounded-full p-2 transition duration-200" title="Sửa">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <span class="mx-2"></span> <!-- Khoảng cách giữa các biểu tượng -->
+                            <a href="/Admin/ProductAdmin/DeleteProduct?id=@item.ProductID" class="text-red-500 hover:bg-red-100 rounded-full p-2 transition duration-200" title="Xóa">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Thêm link đến Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMo3LPe0C6Nfu

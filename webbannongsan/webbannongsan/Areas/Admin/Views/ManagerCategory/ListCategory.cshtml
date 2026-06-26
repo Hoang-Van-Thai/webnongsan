@@ -1,0 +1,46 @@
+﻿@model List<webbannongsan.Models.Category>
+@{
+    ViewBag.Title = "ListCategoryr";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="overflow-x-auto">
+    <a href="/Admin/ManagerCategory/CreateCategory" class="bg-blue-500 text-white font-bold   rounded mb-2 hover:bg-blue-700" title="Tạo danh mục">
+        Tạo danh mục
+    </a>
+    <table class="min-w-full bg-white border border-gray-300">
+        <thead>
+            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                <th class="py-3 px-6 text-center">CategoryID</th>
+                <th class="py-3 px-6 text-center">Tên danh mục</th>
+                <th class="py-3 px-6 text-center">Hành động</th>
+
+
+            </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+            @foreach (var item in Model)
+            {
+                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                    <td class="py-4 px-6 text-center">@item.CategoryID</td>
+                    <td class="py-4 px-6 text-center">@item.Name</td>
+                    <td class="py-4 px-6 text-center">
+                        <a href="/Admin/ManagerCategory/UpdateCategory?CategoryID=@item.CategoryID" class="text-blue-500 hover:underline" title="Sửa">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <span class="mx-2"></span>
+                        <a href="/Admin/ManagerCategory/DeleteCategory?CategoryID=@item.CategoryID" class="text-red-500 hover:underline" title="Xóa">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Thêm link đến Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMo3LPe0C6NfuTH77IfG3oUP7rZ0B8VY2F1QJ3" crossorigin="anonymous">
+
+

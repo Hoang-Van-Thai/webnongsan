@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "OrderStatusStatistics";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+@*<div class="container mx-auto p-4">
+    <h2 class="text-2xl font-semibold mb-4">Thống kê trạng thái đơn hàng</h2>
+
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <div id="orderStatusChart"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        // Lấy dữ liệu từ ViewBag
+        var statusLabels = ['Chờ lấy hàng', 'Đang giao', 'Đã giao'];
+        var statusCounts = [
+            @ViewBag.OrderStatusCounts0.Count,
+            @ViewBag.OrderStatusCounts1.Count,
+            @ViewBag.OrderStatusCounts2.Count
+        ];
+
+        // Tạo biểu đồ bằng ApexCharts
+        var options = {
+            chart: {
+                type: 'pie', // Loại biểu đồ: pie (tròn)
+                height: 350
+            },
+            labels: statusLabels,
+            series: statusCounts,
+            colors: ['#ff6384', '#36a2eb', '#4bc0c0'],
+            title: {
+                text: 'Thống kê trạng thái đơn hàng',
+                align: 'center'
+            },
+            tooltip: {
+                style: {
+                    fontSize: '12px',
+                    fontFamily: 'Helvetica, Arial, sans-serif'
+                },
+                y: {
+                    formatter: function (val) {
+                        return val + " đơn hàng"; // Thêm thông điệp cho tooltip
+                    }
+                }
+            }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#orderStatusChart"), options);
+        chart.render();
+    </script>
+</div>
+
+<div class="container mx-auto p-4">
+    <h2 class="text-2xl font-semibold mb-4">Thống kê doanh thu theo trạng thái đơn hàng</h2>
+
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <div id="revenueChart"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        // Lấy dữ liệu từ ViewBag
+        var statusLabels = ['Chờ lấy hàng', 'Đang giao', 'Đã giao'];
+        var revenueData = [
+            @ViewBag.Total0,
+            @ViewBag.Total1,
+            @ViewBag.Total2
+        ];
+
+        // Tạo biểu đồ tròn bằng ApexCharts
+        var options = {
+            chart: {
+                type: 'pie', // Loại biểu đồ: pie (tròn)
+                height: 350
+            },
+            labels: statusLabels,
+            series: revenueData,
+            colors: ['#FF6384', '#36A2EB', '#4BC0C0'],
+            title: {
+                text: 'Tổng doanh thu theo trạng thái đơn hàng',
+                align: 'center'
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }); // Định dạng VND cho tooltip
+                    }
+                }
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#revenueChart"), options);
+        chart.render();
+    </script>
+</div>*@
+
+@*/////////////////////*@
+<div>
+    <div id="dailyRevenueChart"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        var dates = [];
+        var totalRevenues = [];
+
+        @foreach (var item in (List<webbannongsan.Areas.Admin.Data.DailyStatistic>)ViewBag.DailyStatistics)
+        {
+            <text>
+                dates.push("@item.Date.ToString("yyyy-MM-dd")");
+                totalRevenues.push(@item.TotalRevenue);
+            </text>
+        }
+
+        var options = {
+            chart: {
+                type: 'area',
+                height: 350
+            },
+            title: {
+                text: 'Doanh thu hàng ngày',
+                align: 'left'
+            },
+            series: [{
+                name: 'Doanh thu',
+                data: totalRevenues
+            }],
+            xaxis: {
+                categories: dates
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#dailyRevenueChart"), options);
+        chart.render();
+    </script>
+</div>

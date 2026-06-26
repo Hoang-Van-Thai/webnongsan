@@ -1,0 +1,36 @@
+﻿form {
+    margin-left: 20px;
+
+    label {
+    }
+
+    select {
+        height: 30px;
+        border-radius: 5px;
+        border: 1px solid black;
+        margin: 10px;
+        margin-right: 50px;
+    }
+
+    .homeno {
+        input {
+            margin: 15px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+    }
+
+    button {
+        height: 30px;
+     
+        background-color: #9bec62;
+        border: 1px solid black;
+        border-radius: 5px;
+        margin: 5px;
+
+        &:hover {
+            background-color: #4cff00;
+        }
+    }
+}

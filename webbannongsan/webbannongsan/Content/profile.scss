@@ -1,0 +1,66 @@
+﻿.container {
+
+    .row {
+        display: flex;
+        margin-left: 50px;
+
+        .menu {
+            .nav {
+                display: flex;
+                flex-direction: column;
+
+                a {
+                    text-decoration: none;
+                    color: #3659cc;
+                    margin: 10px;
+                }
+            }
+        }
+
+        .infor {
+            margin-left: 50px;
+
+            form {
+                margin-top: 50px;
+
+                .form-group {
+                    margin: 30px auto; // Căn giữa form và điều chỉnh margin
+                    max-width: 500px; // Giới hạn chiều rộng của form
+
+                    label {
+                        display: block; // Để label nằm phía trên input
+                        margin-bottom: 5px; // Khoảng cách giữa label và input
+                        font-weight: bold;
+                    }
+
+                    input {
+                        width: 100%; // Chiếm toàn bộ chiều rộng của form
+                        height: 30px;
+                        padding: 5px;
+                        border-radius: 5px;
+                        border: 1px solid black;
+                        margin-bottom: 15px; // Khoảng cách dưới input
+                        font-size: 14px;
+                        box-sizing: border-box; // Đảm bảo padding không làm ảnh hưởng đến chiều rộng
+                    }
+
+                    button {
+                        padding: 10px 15px;
+                        border-radius: 5px;
+                        border: 1px solid black;
+                        background-color: #94e773; // Màu nền cho button
+                        color: black; // Màu chữ trắng
+                        font-size: 16px;
+                        cursor: pointer;
+                        transition: background-color 0.3s; // Hiệu ứng khi hover
+
+                        &:hover {
+                            background-color: #45a049; // Màu khi hover
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

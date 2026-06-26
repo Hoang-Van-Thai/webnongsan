@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "CreateCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<form class="space-y-4" method="post" action="/Admin/ManagerCategory/CreateCategory">
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="CategoryName">Tên Danh mục:</label>
+        <div class="w-3/4">
+            <input type="text" class="input-field" id="CategoryName" name="CategoryName" placeholder="Nhập tên danh mục">
+        </div>
+    </div>
+   
+
+    <div class="flex items-center">
+        <div class="w-1/4"></div> <!-- Đây là ô trống để căn giữa nút button -->
+        <div class="w-3/4">
+            <p class="text-red-500">@ViewBag.error</p>
+            <button type="submit" class="btn btn-primary mt-4">Tạo danh mục</button>
+        </div>
+    </div>
+
+</form>
+
+<style>
+    .input-field {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #D1D5DB; /* gray-300 */
+        border-radius: 0.375rem; /* rounded-md */
+    }
+
+    .btn {
+        padding-left: 1rem; /* px-4 */
+        padding-right: 1rem; /* px-4 */
+        padding-top: 0.5rem; /* py-2 */
+        padding-bottom: 0.5rem; /* py-2 */
+        background-color: #3B82F6; /* blue-500 */
+        color: white;
+        border-radius: 0.375rem; /* rounded-md */
+    }
+
+        .btn:hover {
+            background-color: #2563EB; /* blue-600 */
+        }
+</style>
+

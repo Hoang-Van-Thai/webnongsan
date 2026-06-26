@@ -1,0 +1,82 @@
+﻿@model List<webbannongsan.Models.Product>
+@{
+    ViewBag.Title = "Product";
+    <link href="~/Content/product.min.css" rel="stylesheet" />
+}
+
+<main>
+    <form class="filter-product" method="get" action="~/Product/Product">
+        <div class="filter-section">
+            <label for="price-range">Khoảng giá</label>
+            <select id="price-range" name="priceRange">
+                <option value="all">Tất cả</option>
+                <option value="0-100000">Dưới 100,000</option>
+                <option value="100000-500000">100,000 - 500,000</option>
+                <option value="500000-1000000">500,000 - 1,000,000</option>
+                <option value="1000000-2000000">1,000,000 - 2,000,000</option>
+                <option value="2000000">Trên 2,000,000</option>
+            </select>
+        </div>
+        <div class="filter-section">
+            <label for="category">Danh mục</label>
+            <select id="category" name="category">
+                <option value="all">Tất cả</option>
+                @foreach (var category in ViewBag.categories)
+                {
+                    <option>@category.Name</option>
+                }
+            </select>
+        </div>
+        <div class="filter-section">
+            <h2>Giảm giá</h2>
+            <label for="all-produt">
+                <input type="radio" value="null" name="discount" id="all-produt" />
+                <span>Tất cả</span>
+            </label>
+            <br />
+            <label for="discount-20">
+                <input type="radio" value="27" name="discount" id="discount-20" />
+                <span>20%</span>
+            </label>
+            <br />
+            <label for="discount-30">
+                <input type="radio" value="30" name="discount" id="discount-30" />
+                <span>30%</span>
+            </label>
+            <br />
+            <label for="discount-40">
+                <input type="radio" value="31" name="discount" id="discount-40" />
+                <span>40%</span>
+            </label>
+            <br />
+            <label for="discount-50">
+                <input type="radio" value="28" name="discount" id="discount-50" />
+                <span>50%</span>
+            </label>
+        </div>
+        <button class="filter-section" type="submit">Lọc Sản Phẩm</button>
+    </form>
+    <div class="product-list">
+        @foreach (var item in Model)
+        {
+            <div class="product-item">
+                <div class="product-image">
+                    <img src="~/image/product/@item.Image" alt="@item.ProductName" />
+                </div>
+                <div class="product-details">
+                    <h2 class="product-name">@item.ProductName</h2>
+                    <p class="product-price">@item.Price.ToString("N0") VND</p>
+                    <div class="product-actions">
+
+                        <form method="get" action="~/Product/DetailProduct">
+                            <button type="submit" name="detailPrID" value="@item.ProductID">Chi tiết</button>
+                        </form>
+                        <form method="get" action="#">
+                            <button type="submit" name="buyNow" value="@item.ProductID">Mua ngay</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</main>

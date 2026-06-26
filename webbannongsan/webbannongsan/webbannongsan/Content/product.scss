@@ -1,0 +1,107 @@
+﻿main {
+    display: flex;
+    margin: 20px;
+    width: 100%;
+
+    .filter-product {
+        width: 20%;
+
+
+
+        .filter-section {
+            margin-top: 30px;
+
+
+            label {
+                font-size: 20px;
+            }
+
+            #price-range {
+                height: 30px;
+                border-radius: 5px;
+            }
+
+            #category {
+                height: 30px;
+                width: 150px;
+                margin-left: 10px;
+                border-radius: 5px;
+            }
+
+            h2 {
+                font-weight: normal;
+                font-size: 20px;
+            }
+
+            span {
+                font-size: 20px;
+            }
+
+            input {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        button {
+            height: 30px;
+            width: 150px;
+            border-radius: 5px;
+            background-color: #dff4c3;
+        }
+    }
+
+    .product-list {
+        margin-left: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 80%;
+
+        .product-item {
+            width: 20%;
+            height: 300px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin: 10px;
+
+
+            .product-image {
+                height: 50%;
+
+                img {
+                    height: 100%;
+                }
+            }
+
+            .product-details {
+                font-size: 15px;
+                height: 50%;
+
+                .product-name {
+                    white-space: nowrap; /* Không xuống dòng */
+                    overflow: hidden; /* Ẩn phần dư thừa */
+                    text-overflow: ellipsis; /* Hiển thị dấu ... khi nội dung quá dài */
+                    max-width: 200px; /* Đặt chiều rộng tối đa của phần tử */
+                    display: inline-block; /* Đảm bảo nó hoạt động với các thuộc tính trên */
+                }
+
+                .product-price {
+                    font-size: 18px;
+                }
+
+                .product-actions {
+                    display:flex;
+                    form{
+                        margin:10px;
+                        button {
+                            padding:5px;
+                            border-radius: 5px;
+                            background-color: #d8f6b9;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}

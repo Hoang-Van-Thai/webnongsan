@@ -1,0 +1,29 @@
+﻿
+
+@{
+    ViewBag.Title = "Xác nhận Thanh Toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var totalPrice = ViewBag.TotalPrice;
+    var orderId = ViewBag.OrderId;
+}
+
+<h2 class="text-2xl font-semibold mb-4 text-center">Xác nhận Thanh Toán</h2>
+
+<!-- Hiển thị thông tin đơn hàng và tổng tiền -->
+<div class="payment-summary bg-white p-6 shadow-md rounded-md max-w-md mx-auto">
+    <h3 class="text-lg font-bold mb-2">Thông tin đơn hàng</h3>
+    <p><strong>Mã đơn hàng:</strong> @orderId</p>
+    <p><strong>Tổng tiền:</strong> @totalPrice.ToString("#,0") VND</p>
+
+    <hr class="my-4" />
+
+    <div class="flex justify-end">
+        <!-- Button đặt hàng -->
+        @using (Html.BeginForm("Payment", "Cart", FormMethod.Post, new { @class = "space-y-4" }))
+        {
+            <input type="hidden" name="orderId" value="@orderId" />
+            <input type="hidden" name="amount" value="@totalPrice" />
+            <button type="submit" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded shadow hover:bg-blue-600 transition text-sm">Xác nhận Thanh toán</button>
+        }
+    </div>
+</div>

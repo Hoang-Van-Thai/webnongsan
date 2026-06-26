@@ -1,0 +1,61 @@
+﻿@model webbannongsan.Models.Product
+@{
+    ViewBag.Title = "DetailProduct";
+}
+<div class="product-details ml-10">
+    <div class="flex flex-wrap">
+        <div class="product-img">
+            <img class="w-72" src="~/image/product/@Model.Image" alt="@Model.ProductName" />
+        </div>
+
+        <div class="nav-product ml-8">
+            <h2 class="text-2xl font-semibold">@Model.ProductName</h2>
+            <p class="mt-4 text-lg">@Model.Price.ToString("N0") VND</p>
+            <p class="mt-4">Số lượng còn trong kho: @Model.Quantity @Model.Unit</p>
+            <p class="mt-4">Danh mục: @Model.Category.Name</p>
+            <p class="mt-4">Ngày Đăng: @Model.PostingDate</p>
+            <form method="post" action="/Cart/CartIndex">
+                @Html.HiddenFor(m => m.ProductID)
+                <button class="mt-4 border-2 rounded-full bg-green-500 text-white px-4 py-2 hover:bg-green-600 transition-colors" type="submit">Mua ngay</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="detail mt-10">
+        <h2 class="text-2xl font-semibold">Mô tả</h2>
+        <p class="mt-4">@Model.Detail</p>
+    </div>
+
+    <div class="feedback mt-10">
+        <h2 class="text-2xl font-semibold">Bình luận</h2>
+        <p class="text-red-500">@TempData["erorr"]</p>
+        <form class="mt-4 flex items-center space-x-4" action="/Product/Feedback">
+            @Html.HiddenFor(m=>m.ProductID)
+            <input type="text" name="feedbackContent" placeholder="Viết bình luận..." class="border rounded-lg p-2 w-full" />
+            <select name="ratetingStar" class="border rounded-lg p-2">
+                <option value="1">1 sao</option>
+                <option value="2">2 sao</option>
+                <option value="3">3 sao</option>
+                <option value="4">4 sao</option>
+                <option value="5" selected>5 sao</option>
+            </select>
+            <button type="submit" class="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 transition-colors">
+                <img class="w-6" src="~/image/send.png" alt="Gửi" />
+            </button>
+        </form>
+
+        <div class="comment mt-6 space-y-4">
+            @for (int i = 0; i < ViewBag.feedbacks.Count; i++)
+            {
+                <div class="flex items-start space-x-4">
+                    <img class="w-8 h-8" src="~/image/user.png" alt="User" />
+                    <div class="boxComment">
+                        <h3 class="font-semibold">@ViewBag.nameAccount[i]</h3>
+                        <p class="text-sm text-gray-600">@ViewBag.feedbacks[i].RatingStar sao</p>
+                        <p>@ViewBag.feedbacks[i].FeedbackContent</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

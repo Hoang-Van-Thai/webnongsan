@@ -1,0 +1,79 @@
+﻿.product-details {
+    margin: 40px;
+
+    .box {
+        display: flex;
+        justify-content: flex-start;
+
+        .product-img {
+            img {
+                width: 300px;
+            }
+        }
+
+        .nav-product {
+            margin-left: 30px;
+
+            p {
+                margin-bottom: 30px;
+            }
+
+            form {
+                button {
+                    height: 30px;
+                    background-color: #9bec62;
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    margin: 5px;
+
+                    &:hover {
+                        background-color: #4cff00;
+                    }
+                }
+            }
+        }
+    }
+
+    .feedback {
+        form {
+            display: flex;
+            align-items: flex-start;
+
+            select {
+                width:25px;
+                padding:10px;
+
+            }
+
+            input {
+                margin: 15px;
+                height: 30px;
+                width: 50%;
+                border-radius: 5px;
+                border: 1px solid black;
+            }
+
+            a {
+                img {
+                    width: 30px;
+                    margin: 18px auto;
+
+                    &:hover {
+                        transform: scale(1.05); /* Phóng to ảnh lên một chút */
+                        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Tăng độ mạnh của bóng đổ */
+                    }
+                }
+            }
+        }
+
+        .comment {
+
+
+            img {
+            }
+
+            .boxComment {
+            }
+        }
+    }
+}

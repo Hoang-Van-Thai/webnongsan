@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "ListOrder";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model List<webbannongsan.Models.Order>
+
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-300">
+        <thead>
+            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                <th class="py-3 px-6 text-center">OrderID</th>
+                <th class="py-3 px-6 text-center">Thời gian đặt hàng</th>
+                <th class="py-3 px-6 text-center">Thời gian giao hàng</th>
+                <th class="py-3 px-6 text-center">Trạng thái đơn hàng</th>
+                <th class="py-3 px-6 text-center">AccountID</th>
+                <th class="py-3 px-6 text-center">Địa chỉ giao hàng</th>
+                <th class="py-3 px-6 text-center">Giá</th>
+                @*<th class="py-3 px-6 text-center">Hành động</th>*@
+            </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+            @foreach (var item in Model)
+            {
+                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                    <td class="py-4 px-6 text-center">@item.OrderID</td>
+                    <td class="py-4 px-6 text-center">@String.Format("{0:dd/MM/yyyy HH:mm}", item.OrderTime)</td>
+                    <td class="py-4 px-6 text-center">@String.Format("{0:dd/MM/yyyy HH:mm}", item.DeliveryTime)</td>
+                    <td class="py-4 px-6 text-center">@item.StatusOrder</td>
+                    <td class="py-4 px-6 text-center">@item.AccountID</td>
+                    <td class="py-4 px-6 text-center">@item.DefaultAddress</td>
+                    <td class="py-4 px-6 text-center">@item.Price</td>
+
+                    @*<td class="py-4 px-6 text-center">
+                        <a href="/Admin/Orders/UpdateOrder?OrderID=@item.OrderID" class="text-blue-500 hover:underline" title="Sửa">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <span class="mx-2"></span>
+                        <a href="/Admin/Orders/DeleteOrder?OrderID=@item.OrderID" class="text-red-500 hover:underline" title="Xóa">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Thêm link đến Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMo3LPe0C6NfuTH77IfG3oUP7rZ0B8VY2F1QJ3" crossorigin="anonymous">
+

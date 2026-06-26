@@ -1,0 +1,94 @@
+﻿@model webbannongsan.Models.Product
+@{
+    ViewBag.Title = "CreateProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<form class="space-y-4" method="post" action="/Admin/ProductAdmin/CreateProduct">
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="ProductName">Tên sản phẩm:</label>
+        <div class="w-3/4">
+            <input type="text" class="input-field" id="ProductName" name="ProductName" placeholder="Nhập tên sản phẩm">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="Price">Giá:</label>
+        <div class="w-3/4">
+            <input type="number" class="input-field" id="Price" name="Price" placeholder="Nhập giá sản phẩm">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="Image">Hình ảnh:</label>
+        <div class="w-3/4">
+            <input type="text" class="input-field" id="Image" name="Image" placeholder="Nhập URL hình ảnh">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="Quantity">Số lượng:</label>
+        <div class="w-3/4">
+            <input type="number" class="input-field" id="Quantity" name="Quantity" placeholder="Nhập số lượng">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="Detail">Mô tả:</label>
+        <div class="w-3/4">
+            <input type="text" class="input-field" id="Detail" name="Detail" placeholder="Nhập mô tả sản phẩm">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="PostingDate">Ngày đăng:</label>
+        <div class="w-3/4">
+            <input type="datetime-local" class="input-field" id="PostingDate" name="PostingDate" value="@string.Format("{0:yyyy-MM-dd HH:mm}", Model.PostingDate)">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="Unit">Đơn vị:</label>
+        <div class="w-3/4">
+            <input type="text" class="input-field" id="Unit" name="Unit" value="@Model.Unit" placeholder="Nhập đơn vị">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <label class="w-1/4 text-right pr-4" for="category">Danh mục:</label>
+        <div class="w-3/4">
+            <select id="category" name="categoryname" class="input-field">
+                @foreach (var category in ViewBag.categories)
+                {
+                    <option value="@category.Name">@category.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="flex items-center">
+        <div class="w-1/4"></div> <!-- Đây là ô trống để căn giữa nút button -->
+        <div class="w-3/4">
+            <p class="text-red-500">@ViewBag.error</p>
+            <button type="submit" class="btn btn-primary mt-4">Tạo sản phẩm</button>
+        </div>
+    </div>
+
+</form>
+
+<style>
+    .input-field {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #D1D5DB; /* gray-300 */
+        border-radius: 0.375rem; /* rounded-md */
+    }
+
+    .btn {
+        padding-left: 1rem; /* px-4 */
+        padding-right: 1rem; /* px-4 */
+        padding-top: 0.5rem; /* py-2 */
+        padding-bottom: 0.5rem; /* py-2 */
+        background-color: #3B82F6; /* blue-500 */
+        color: white;
+        border-radius: 0.375rem; /* rounded-md */
+    }
+
+        .btn:hover {
+            background-color: #2563EB; /* blue-600 */
+        }
+</style>
+

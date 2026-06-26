@@ -1,0 +1,86 @@
+﻿@charset "UTF-8";
+main {
+  display: flex;
+  margin: 20px;
+  width: 100%;
+}
+main .filter-product {
+  width: 20%;
+}
+main .filter-product .filter-section {
+  margin-top: 30px;
+}
+main .filter-product .filter-section label {
+  font-size: 20px;
+}
+main .filter-product .filter-section #price-range {
+  height: 30px;
+  border-radius: 5px;
+}
+main .filter-product .filter-section #category {
+  height: 30px;
+  width: 150px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+main .filter-product .filter-section h2 {
+  font-weight: normal;
+  font-size: 20px;
+}
+main .filter-product .filter-section span {
+  font-size: 20px;
+}
+main .filter-product .filter-section input {
+  width: 18px;
+  height: 18px;
+}
+main .filter-product button {
+  height: 30px;
+  width: 150px;
+  border-radius: 5px;
+  background-color: #dff4c3;
+}
+main .product-list {
+  margin-left: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
+main .product-list .product-item {
+  width: 20%;
+  height: 300px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 10px;
+}
+main .product-list .product-item .product-image {
+  height: 50%;
+}
+main .product-list .product-item .product-image img {
+  height: 100%;
+}
+main .product-list .product-item .product-details {
+  font-size: 15px;
+  height: 50%;
+}
+main .product-list .product-item .product-details .product-name {
+  white-space: nowrap; /* Không xuống dòng */
+  overflow: hidden; /* Ẩn phần dư thừa */
+  text-overflow: ellipsis; /* Hiển thị dấu ... khi nội dung quá dài */
+  max-width: 200px; /* Đặt chiều rộng tối đa của phần tử */
+  display: inline-block; /* Đảm bảo nó hoạt động với các thuộc tính trên */
+}
+main .product-list .product-item .product-details .product-price {
+  font-size: 18px;
+}
+main .product-list .product-item .product-details .product-actions {
+  display: flex;
+}
+main .product-list .product-item .product-details .product-actions form {
+  margin: 10px;
+}
+main .product-list .product-item .product-details .product-actions form button {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #d8f6b9;
+}

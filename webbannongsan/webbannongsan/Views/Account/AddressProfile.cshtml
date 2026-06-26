@@ -1,0 +1,33 @@
+﻿@model webbannongsan.Models.Account
+@{
+    ViewBag.Title = "AddressProfile";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+<h2>Danh sách địa chỉ</h2>
+<div class="containerAdressPr">
+    <table>
+            @for (int i = 0; i < ViewBag.addresses.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <hr />
+                        <p>@(Model.FirstName+" "+Model.LastName)</p>
+                        <p>Số điện thoại: @Model.PhoneNumber</p>
+                        <p>Địa chỉ: @ViewBag.addressString[i]</p>
+                        <p style="color:#0026ff">@(ViewBag.DefaultAdress== ViewBag.addresses[i].AddressID ? "Mặc định":"")</p>
+
+                    </td>
+                    <td>
+                        <a href="/Account/UpdateAddress?AdressID=@(ViewBag.addresses[i].AddressID)">Sửa</a>
+                        <a href="/Account/DeleteAddress?AddressID=@(ViewBag.addresses[i].AddressID)">Xóa</a>
+                    </td>
+                </tr>
+               
+                
+            }
+
+    </table>
+    <a class="linkCreate"  href="/Account/CreateAddress">Thêm địa chỉ</a>
+
+</div>
+<link href="~/Content/AddressProfile.css" rel="stylesheet" />

@@ -1,0 +1,54 @@
+﻿[
+  {
+    "outputFile": "Content/Site.css",
+    "inputFile": "Content/Site.scss"
+  },
+  {
+    "outputFile": "Content/stylelayout.css",
+    "inputFile": "Content/stylelayout.scss"
+  },
+  {
+    "outputFile": "Content/index.css",
+    "inputFile": "Content/index.scss"
+  },
+  {
+    "outputFile": "Content/product.css",
+    "inputFile": "Content/product.scss"
+  },
+  {
+    "outputFile": "Content/profile.css",
+    "inputFile": "Content/profile.scss"
+  },
+  {
+    "outputFile": "Content/AddressProfile.css",
+    "inputFile": "Content/AddressProfile.scss"
+  },
+  {
+    "outputFile": "Content/UpdateAddress.css",
+    "inputFile": "Content/UpdateAddress.scss"
+  },
+  {
+    "outputFile": "Content/UpdatePassword.css",
+    "inputFile": "Content/UpdatePassword.scss"
+  },
+  {
+    "outputFile": "Content/ConfirmOTP.css",
+    "inputFile": "Content/ConfirmOTP.scss"
+  },
+  {
+    "outputFile": "Content/ForgotPassword.css",
+    "inputFile": "Content/ForgotPassword.scss"
+  },
+  {
+    "outputFile": "Content/ComfirmPassword.css",
+    "inputFile": "Content/ComfirmPassword.scss"
+  },
+  {
+    "outputFile": "Content/DetailProduct.css",
+    "inputFile": "Content/DetailProduct.scss"
+  },
+  {
+    "outputFile": "Content/CartIndex.css",
+    "inputFile": "Content/CartIndex.scss"
+  }
+]

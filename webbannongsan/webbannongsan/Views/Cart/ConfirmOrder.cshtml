@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "ConfirmOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="max-w-2xl mx-auto p-8 mt-10 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-green-600 text-center mb-6">Đặt hàng thành công</h2>
+
+    <p class="text-lg text-gray-700 mb-4">Xin chào, bạn đã đặt hàng thành công.</p>
+    <div class="mb-6">
+        <p class="text-lg font-semibold text-gray-800">Địa chỉ nhận hàng:</p>
+        <p class="text-md text-gray-600">@ViewBag.address</p>
+    </div>
+
+    <div class="mb-6">
+        <p class="text-lg font-semibold text-gray-800">Ống tiền:</p>
+        <p class="text-md text-gray-600">@ViewBag.total VND</p>
+    </div>
+
+    <div class="text-center">
+        <a href="/" class="inline-block bg-blue-500 text-white font-semibold py-2 px-6 rounded shadow hover:bg-blue-600 transition-all">Tiếp tục mua sắm</a>
+    </div>
+</div>
+
+<script src="https://cdn.tailwindcss.com"></script>

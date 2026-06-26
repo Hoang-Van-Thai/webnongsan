@@ -1,0 +1,115 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .login-container {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+
+        .password-field {
+            position: relative;
+        }
+
+            .password-field .toggle-password {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 50px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar shadow-sm p-3 mb-5 bg-white">
+        <div class="container-fluid">
+            <button class="btn btn-outline-secondary" onclick="window.history.back();">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H2.707l5.147 5.146a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708.708L2.707 7.5H14.5A.5.5 0 0 1 15 8z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <section class="my-lg-14 my-8">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12 col-md-6 col-lg-4 order-lg-1 order-2">
+                    <img src="https://media.loveitopcdn.com/3807/thumb/logo-nong-san-nha-que-compressed.jpg" alt="Login Image" class="img-fluid">
+                </div>
+                <div class="col-12 col-md-6 offset-lg-1 col-lg-5 order-lg-2 order-1 login-container">
+                    <div class="mb-lg-9 mb-5 text-center">
+                        <h1 class="mb-1 h2 fw-bold">Đăng nhập</h1>
+                        <p>Chào mừng bạn quay trở lại <span class="text-primary">Vườn Nông Sản Tươi Ngon!</span></p>
+                    </div>
+
+                    <!-- Cập nhật form -->
+                    <form action="@Url.Action("Login", "Default1")" method="post">
+
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <input type="email" id="email" name="email" placeholder="Email" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <div class="password-field">
+                                    <input type="password" id="password" name="password" placeholder="Mật khẩu" class="form-control" required>
+                                    <span class="toggle-password bi bi-eye-slash" onclick="togglePassword()"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 d-grid">
+                                <button type="submit" class="btn btn-custom">Đăng nhập</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Kết thúc form -->
+
+                    <p class="mt-4 text-center">
+                        <small>Quên mật khẩu? <a href="#!" class="link-primary">Nhấn vào đây</a></small>
+                    </p>
+                    <p class="mt-2 text-center">
+                        <small>Chưa có tài khoản? <a href="@Url.Action("Index", "Default")" class="link-primary">Đăng ký</a></small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.toggle-password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.replace('bi-eye-slash', 'bi-eye');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.replace('bi-eye', 'bi-eye-slash');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿
+@{
+    Layout = null;
+}
+
+<form method="post" action="/Account/ConfirmOTP">
+    <h2>Nhập mã OTP</h2>
+    <input type="text" name="otp" placeholder="Nhập OTP của bạn" />
+    <p>@ViewBag.erorr</p>
+    <button>Xác nhập</button>
+</form>
+<link href="~/Content/ConfirmOTP.min.css" rel="stylesheet" />

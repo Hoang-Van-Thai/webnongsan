@@ -1,0 +1,41 @@
+﻿.containerAdressPr {
+    display: flex;
+
+    table {
+        tr {
+            td {
+                p {
+                }
+
+                a {
+                    text-decoration: none;
+                    background-color: #9bec62;
+                    padding: 5px;
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    color: black;
+                    margin: 5px;
+
+                    &:hover {
+                        background-color: #4cff00;
+                    }
+                }
+            }
+        }
+    }
+
+    .linkCreate {
+        height: 33px;
+        text-decoration: none;
+        background-color: #9bec62;
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 5px;
+        color: black;
+        margin: 50px;
+
+        &:hover {
+            background-color: #4cff00;
+        }
+    }
+}

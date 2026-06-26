@@ -1,0 +1,68 @@
+﻿@model webbannongsan.Models.Product
+@{
+    ViewBag.Title = "UpdateProduct";
+}
+
+<form class="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg" method="post" action="/Admin/ProductAdmin/UpdateProduct">
+    @Html.HiddenFor(m => m.ProductID)
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="ProductName">Tên sản phẩm:</label>
+        <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="ProductName" name="ProductName" value="@Model.ProductName">
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="Price">Giá:</label>
+        <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Price" name="Price" value="@Model.Price">
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="Image">Hình ảnh:</label>
+        <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Image" name="Image" value="@Model.Image">
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="Quantity">Số lượng:</label>
+        <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Quantity" name="Quantity" value="@Model.Quantity">
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="Detail">Mô tả:</label>
+        <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Detail" name="Detail" value="@Model.Detail">
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="PostingDate">Ngày đăng:</label>
+        <input type="datetime-local" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="PostingDate" name="PostingDate" value="@string.Format("{0:yyyy-MM-dd HH:mm}", Model.PostingDate)">
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="Unit">Đơn vị:</label>
+        <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Unit" name="Unit" value="@Model.Unit">
+    </div>
+    
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="CouponID">Mã giảm giá:</label>
+        <select id="CouponID" name="CouponID" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <option value="0" >Không giảm giá</option>           
+            @foreach (var coupon in ViewBag.coupons)
+            {
+                <option value="@coupon.CouponID" @(ViewBag.couponName==coupon.Name?"Selected":"") >@coupon.Name</option>
+            }
+        </select>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="category">Danh mục:</label>
+        <select id="category" name="categoryname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            @foreach (var category in ViewBag.categories)
+            {
+                <option value="@category.Name" @(ViewBag.categoryName == category.Name ? "selected" : "")>@category.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-6">
+        <p class="text-red-500">@ViewBag.error</p>
+        <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline">Lưu</button>
+    </div>
+</form>

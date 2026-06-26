@@ -1,0 +1,90 @@
+﻿
+@model List<webbannongsan.Models.Product>
+@using webbannongsan.Models;
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" style="color:red;font-size:20px;">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<form method="post" action="/Cart/UpdateCart" class="cart-form">
+    @if (Model != null && Model.Any())
+    {
+        for (int i = 0; i < Model.Count; i++)
+        {
+            var product = Model[i];
+            var discountValue = GetDiscountForProduct(product.ProductID);
+            var finalPrice = product.Price * (1 - discountValue);
+
+            <div class="product-item">
+                <img class="product-image" style="width:50px" src="~/image/product/@product.Image" alt="Product Image" />
+                <div class="product-details">
+                    <p class="product-name">@product.ProductName</p>
+                    <input type="number" name="quantity[@i]" value="@ViewBag.CartQuantity[i]" class="quantity-input" data-price="@finalPrice" onchange="updateTotal()" />
+                    <p class="product-price">@finalPrice.ToString("#,0") VND</p>
+                    <input type="checkbox" name="selectedProducts" value="@product.ProductID" class="product-checkbox" data-price="@finalPrice" onchange="updateTotal()" />
+                </div>
+                @*<a href="@Url.Action("RemoveFromCart", new { productId = product.ProductID })">Xóa</a>*@
+                <a href="javascript:void(0)" id="btnxoa">Xóa</a>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Giỏ hàng của bạn đang trống.</p>
+    }
+
+    <div class="boxButtom">
+        <div class="total-price">
+            Tổng tiền: <span id="total-value">0</span> VND
+        </div>
+        <div class="box">
+            <button type="submit" formaction="@Url.Action("UpdateCart", "Cart")" class="submit-button w-[150px] mt-4 border-2 rounded-full bg-green-500 text-white px-4 py-2 hover:bg-green-600 transition-colors">
+                Đặt hàng
+            </button>
+        </div>
+
+    </div>
+</form>
+
+<script>
+    function updateTotal() {
+        let total = 0;
+
+        // Lấy tất cả các checkbox sản phẩm
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+        checkboxes.forEach(function (checkbox) {
+            // Nếu checkbox được tích, cộng giá trị sản phẩm vào tổng
+            if (checkbox.checked) {
+                const price = parseFloat(checkbox.getAttribute('data-price'));
+                const quantityInput = checkbox.closest('.product-details').querySelector('.quantity-input');
+                const quantity = parseInt(quantityInput.value) || 0; // Lấy số lượng, mặc định là 0 nếu không hợp lệ
+                total += price * quantity; // Tính tổng với số lượng
+            }
+        });
+
+        // Cập nhật tổng tiền hiển thị
+        document.getElementById('total-value').innerText = total.toLocaleString('vi-VN');
+    }
+</script>
+
+<link href="~/Content/CartIndex.min.css" rel="stylesheet" />
+
+@functions {
+    public decimal GetDiscountForProduct(int productId)
+    {
+        using (var db = new DB_TadNongSanEntities())
+        {
+            var product = db.Products.FirstOrDefault(p => p.ProductID == productId);
+            if (product == null || product.CouponID == null) return 0;
+
+            var coupon = db.Coupons.FirstOrDefault(c => c.CouponID == product.CouponID);
+            return coupon != null ? (decimal)coupon.Discount : 0;
+        }
+    }
+}

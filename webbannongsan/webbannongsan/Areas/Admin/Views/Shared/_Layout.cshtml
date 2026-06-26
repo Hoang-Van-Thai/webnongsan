@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="~/Content/output.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <nav class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a class="text-lg font-bold text-gray-800" href="#">Admin</a>
+                <ul class="flex space-x-4">
+                    <li><a class="text-gray-600 hover:text-blue-500" href="/Admin/ProductAdmin/ListProduct">Sản Phẩm</a></li>
+                    <li><a class="text-gray-600 hover:text-blue-500" href="/Admin/ManagerAccount/ListAccount">Quản lý người dùng</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto py-6">
+        @RenderBody()
+    </div>
+
+</body>
+</html>

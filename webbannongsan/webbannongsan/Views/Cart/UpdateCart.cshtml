@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Cập nhật giỏ hàng";
+    var selectedItems = ViewBag.SelectedItems as List<webbannongsan.Models.Product>;
+    var selectedQuantities = ViewBag.SelectedQuantities as List<int>;
+    var totalPrice = ViewBag.SumPrice; // Lấy tổng giá từ ViewBag
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-2xl font-semibold mb-4 text-center">Cập nhật giỏ hàng</h2>
+
+<!-- Form cập nhật giỏ hàng -->
+@using (Html.BeginForm("ConfirmOrder", "Cart", FormMethod.Post, new { @class = "space-y-4" })) // Thêm lớp Tailwind cho form
+{
+    <!-- Bảng hiển thị danh sách sản phẩm đã chọn -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-300">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hình ảnh</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tên sản phẩm</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Số lượng</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Giá</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @for (int i = 0; i < selectedItems.Count; i++)
+                {
+                    var product = selectedItems[i];
+                    var quantity = selectedQuantities[i];
+
+                    <tr class="hover:bg-gray-100">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <img class="w-10 h-10 object-cover" src="~/image/product/@product.Image" alt="Product Image" />
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <p class="font-medium text-sm">@product.ProductName</p>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <input type="number" name="selectedQuantities[@i]" value="@quantity" class="quantity-input border border-gray-300 rounded p-1 w-16 text-sm" min="1" readonly /> <!-- Cho phép chỉnh sửa -->
+                            <input type="hidden" name="selectedItems[@i].ProductID" value="@product.ProductID" />
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <p class="text-gray-600 text-sm">@product.Price.ToString("#,0") VND</p>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Thêm ô nhập địa chỉ nhận -->
+    <div class="address-input mt-4">
+        <label class="block text-sm font-medium text-gray-700">Địa chỉ:</label>
+        <select name="address" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+            @for (int i = 0; i < ViewBag.addresses.Count; i++)
+            {
+                <option value="@ViewBag.addressString[i]"> @ViewBag.addressString[i]</option>
+            }
+        </select>
+    </div>
+
+    <!-- Thêm ô nhập mã giảm giá -->
+    <div class="coupon-input mt-4">
+        <label class="block text-sm font-medium text-gray-700" for="coupon-code">Mã giảm giá:</label>
+        <select name="Discount" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+            <option value="0">Không mã giảm giá</option>
+            @foreach (var coupon in ViewBag.Coupon)
+            {
+                <option value="@coupon.Discount">@(coupon.Discount * 100) %</option>
+            }
+        </select>
+    </div>
+
+    <!-- Hiển thị tổng tiền -->
+    <p class="text-lg font-semibold mt-4">Tổng tiền: <span id="total-value">@totalPrice.ToString("#,0")</span> VND</p>
+    <input type="hidden" id="totalPrice" name="totalPrice" value="@totalPrice" />
+    <p>@ViewBag.error</p>
+    <button type="submit" class="mt-4 bg-blue-500 text-white font-semibold py-2 px-4 rounded shadow hover:bg-blue-600 transition text-sm">Đặt hàng</button>
+    <a href="@Url.Action("Payment", "Cart", new { totalPrice = totalPrice, orderId = "12345" })" class="mt-4 bg-green-500 text-white font-semibold py-2 px-4 rounded shadow hover:bg-green-600 transition text-sm inline-block">Thanh toán</a>
+}
+<script src="https://cdn.tailwindcss.com"></script>

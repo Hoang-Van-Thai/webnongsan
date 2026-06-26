@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DefaultAddress" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="AddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WardID" Type="Int32" Nullable="false" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Computer">
+    <Key>
+      <PropertyRef Name="ComputerID" />
+    </Key>
+    <Property Name="ComputerID" Type="Int32" Nullable="false" />
+    <Property Name="IPAddress" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="ComputerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__Compu__52793849" FromRole="Computers" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="CouponID" />
+    </Key>
+    <Property Name="CouponID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Discount" Type="Double" Nullable="false" />
+    <Property Name="PostingDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="DistrictID" />
+    </Key>
+    <Property Name="DistrictID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProvinceID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="FeedbackID" />
+    </Key>
+    <Property Name="FeedbackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RatingStar" Type="Int16" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="FeedbackContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PostingDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="TransactionID" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="IssueDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Transaction" Relationship="Self.FK__Invoices__Transa__573DED66" FromRole="Invoices" ToRole="Transactions" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Invoices__UserID__5649C92D" FromRole="Invoices" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="NguoiDung">
+    <Key>
+      <PropertyRef Name="MaNguoiDung" />
+    </Key>
+    <Property Name="MaNguoiDung" Type="Int32" Nullable="false" />
+    <Property Name="TenDangNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TrangThai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LichSuDangNhap" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NhanViens" Relationship="Self.FK__NhanVien__MaNguo__77AABCF8" FromRole="NguoiDung" ToRole="NhanVien" />
+    <NavigationProperty Name="VaiTroNguoiDungs" Relationship="Self.FK__VaiTroNgu__MaNgu__7A8729A3" FromRole="NguoiDung" ToRole="VaiTroNguoiDung" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="MaNhanVien" />
+    </Key>
+    <Property Name="MaNhanVien" Type="Int32" Nullable="false" />
+    <Property Name="MaNguoiDung" Type="Int32" />
+    <Property Name="HoTen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NguoiDung" Relationship="Self.FK__NhanVien__MaNguo__77AABCF8" FromRole="NhanVien" ToRole="NguoiDung" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Coupon" Type="Double" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DeliveryTime" Type="DateTime" Precision="3" />
+    <Property Name="StatusOrder" Type="Int16" Nullable="false" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="DefaultAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="PhongBan">
+    <Key>
+      <PropertyRef Name="MaPhongBan" />
+    </Key>
+    <Property Name="MaPhongBan" Type="Int32" Nullable="false" />
+    <Property Name="TenPhongBan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MoTaPhongBan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="VaiTroNguoiDungs" Relationship="Self.FK__VaiTroNgu__MaPho__7C6F7215" FromRole="PhongBan" ToRole="VaiTroNguoiDung" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PostingDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CouponID" Type="Int32" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Province">
+    <Key>
+      <PropertyRef Name="ProvinceID" />
+    </Key>
+    <Property Name="ProvinceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServicePackage">
+    <Key>
+      <PropertyRef Name="PackageID" />
+    </Key>
+    <Property Name="PackageID" Type="Int32" Nullable="false" />
+    <Property Name="PackageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Duration" Type="Int32" />
+    <Property Name="Speed" Type="Int32" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__Packa__536D5C82" FromRole="ServicePackages" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Name="TransactionID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="ComputerID" Type="Int32" />
+    <Property Name="PackageID" Type="Int32" />
+    <Property Name="StartTime" Type="DateTime" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+    <Property Name="UploadData" Type="Int32" />
+    <Property Name="DownloadData" Type="Int32" />
+    <NavigationProperty Name="Computer" Relationship="Self.FK__Transacti__Compu__52793849" FromRole="Transactions" ToRole="Computers" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoices__Transa__573DED66" FromRole="Transactions" ToRole="Invoices" />
+    <NavigationProperty Name="ServicePackage" Relationship="Self.FK__Transacti__Packa__536D5C82" FromRole="Transactions" ToRole="ServicePackages" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Transacti__UserI__51851410" FromRole="Transactions" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="user_info">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phonenumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoices__UserID__5649C92D" FromRole="Users" ToRole="Invoices" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__UserI__51851410" FromRole="Users" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="VaiTro">
+    <Key>
+      <PropertyRef Name="MaVaiTro" />
+    </Key>
+    <Property Name="MaVaiTro" Type="Int32" Nullable="false" />
+    <Property Name="TenVaiTro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MoTaVaiTro" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="VaiTroNguoiDungs" Relationship="Self.FK__VaiTroNgu__MaVai__7B7B4DDC" FromRole="VaiTro" ToRole="VaiTroNguoiDung" />
+  </EntityType>
+  <EntityType Name="VaiTroNguoiDung">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="MaNguoiDung" Type="Int32" />
+    <Property Name="MaVaiTro" Type="Int32" />
+    <Property Name="MaPhongBan" Type="Int32" />
+    <NavigationProperty Name="NguoiDung" Relationship="Self.FK__VaiTroNgu__MaNgu__7A8729A3" FromRole="VaiTroNguoiDung" ToRole="NguoiDung" />
+    <NavigationProperty Name="PhongBan" Relationship="Self.FK__VaiTroNgu__MaPho__7C6F7215" FromRole="VaiTroNguoiDung" ToRole="PhongBan" />
+    <NavigationProperty Name="VaiTro" Relationship="Self.FK__VaiTroNgu__MaVai__7B7B4DDC" FromRole="VaiTroNguoiDung" ToRole="VaiTro" />
+  </EntityType>
+  <EntityType Name="Ward">
+    <Key>
+      <PropertyRef Name="WardID" />
+    </Key>
+    <Property Name="WardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DistrictID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Wishlist">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MSreplication_options">
+    <Key>
+      <PropertyRef Name="optname" />
+      <PropertyRef Name="value" />
+      <PropertyRef Name="major_version" />
+      <PropertyRef Name="minor_version" />
+      <PropertyRef Name="revision" />
+      <PropertyRef Name="install_failures" />
+    </Key>
+    <Property Name="optname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="value" Type="Boolean" Nullable="false" />
+    <Property Name="major_version" Type="Int32" Nullable="false" />
+    <Property Name="minor_version" Type="Int32" Nullable="false" />
+    <Property Name="revision" Type="Int32" Nullable="false" />
+    <Property Name="install_failures" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_fallback_db">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="dbid" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="version" />
+    </Key>
+    <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xfallback_dbid" Type="Int16" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dbid" Type="Int16" Nullable="false" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="version" Type="Int16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_fallback_dev">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="low" />
+      <PropertyRef Name="high" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="phyname" />
+    </Key>
+    <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xfallback_low" Type="Int32" />
+    <Property Name="xfallback_drive" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="low" Type="Int32" Nullable="false" />
+    <Property Name="high" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phyname" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_fallback_usg">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="dbid" />
+      <PropertyRef Name="segmap" />
+      <PropertyRef Name="lstart" />
+      <PropertyRef Name="sizepg" />
+      <PropertyRef Name="vstart" />
+    </Key>
+    <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xfallback_vstart" Type="Int32" />
+    <Property Name="dbid" Type="Int16" Nullable="false" />
+    <Property Name="segmap" Type="Int32" Nullable="false" />
+    <Property Name="lstart" Type="Int32" Nullable="false" />
+    <Property Name="sizepg" Type="Int32" Nullable="false" />
+    <Property Name="vstart" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_monitor">
+    <Key>
+      <PropertyRef Name="lastrun" />
+      <PropertyRef Name="cpu_busy" />
+      <PropertyRef Name="io_busy" />
+      <PropertyRef Name="idle" />
+      <PropertyRef Name="pack_received" />
+      <PropertyRef Name="pack_sent" />
+      <PropertyRef Name="connections" />
+      <PropertyRef Name="pack_errors" />
+      <PropertyRef Name="total_read" />
+      <PropertyRef Name="total_write" />
+      <PropertyRef Name="total_errors" />
+    </Key>
+    <Property Name="lastrun" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cpu_busy" Type="Int32" Nullable="false" />
+    <Property Name="io_busy" Type="Int32" Nullable="false" />
+    <Property Name="idle" Type="Int32" Nullable="false" />
+    <Property Name="pack_received" Type="Int32" Nullable="false" />
+    <Property Name="pack_sent" Type="Int32" Nullable="false" />
+    <Property Name="connections" Type="Int32" Nullable="false" />
+    <Property Name="pack_errors" Type="Int32" Nullable="false" />
+    <Property Name="total_read" Type="Int32" Nullable="false" />
+    <Property Name="total_write" Type="Int32" Nullable="false" />
+    <Property Name="total_errors" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_values">
+    <Key>
+      <PropertyRef Name="number" />
+      <PropertyRef Name="type" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="number" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="low" Type="Int32" />
+    <Property Name="high" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__Transacti__Compu__52793849">
+    <End Role="Computers" Type="Self.Computer" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Computers">
+        <PropertyRef Name="ComputerID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="ComputerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoices__Transa__573DED66">
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="0..1" />
+    <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transactions">
+        <PropertyRef Name="TransactionID" />
+      </Principal>
+      <Dependent Role="Invoices">
+        <PropertyRef Name="TransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoices__UserID__5649C92D">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Invoices">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NhanVien__MaNguo__77AABCF8">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="MaNguoiDung" />
+      </Principal>
+      <Dependent Role="NhanVien">
+        <PropertyRef Name="MaNguoiDung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VaiTroNgu__MaNgu__7A8729A3">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+    <End Role="VaiTroNguoiDung" Type="Self.VaiTroNguoiDung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="MaNguoiDung" />
+      </Principal>
+      <Dependent Role="VaiTroNguoiDung">
+        <PropertyRef Name="MaNguoiDung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VaiTroNgu__MaPho__7C6F7215">
+    <End Role="PhongBan" Type="Self.PhongBan" Multiplicity="0..1" />
+    <End Role="VaiTroNguoiDung" Type="Self.VaiTroNguoiDung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhongBan">
+        <PropertyRef Name="MaPhongBan" />
+      </Principal>
+      <Dependent Role="VaiTroNguoiDung">
+        <PropertyRef Name="MaPhongBan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Packa__536D5C82">
+    <End Role="ServicePackages" Type="Self.ServicePackage" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServicePackages">
+        <PropertyRef Name="PackageID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="PackageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__UserI__51851410">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VaiTroNgu__MaVai__7B7B4DDC">
+    <End Role="VaiTro" Type="Self.VaiTro" Multiplicity="0..1" />
+    <End Role="VaiTroNguoiDung" Type="Self.VaiTroNguoiDung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VaiTro">
+        <PropertyRef Name="MaVaiTro" />
+      </Principal>
+      <Dependent Role="VaiTroNguoiDung">
+        <PropertyRef Name="MaVaiTro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
+    <EntitySet Name="Carts" EntityType="Self.Cart" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Computers" EntityType="Self.Computer" />
+    <EntitySet Name="Coupons" EntityType="Self.Coupon" />
+    <EntitySet Name="Districts" EntityType="Self.District" />
+    <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="NguoiDungs" EntityType="Self.NguoiDung" />
+    <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="PhongBans" EntityType="Self.PhongBan" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Provinces" EntityType="Self.Province" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="ServicePackages" EntityType="Self.ServicePackage" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <EntitySet Name="user_info" EntityType="Self.user_info" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="VaiTroes" EntityType="Self.VaiTro" />
+    <EntitySet Name="VaiTroNguoiDungs" EntityType="Self.VaiTroNguoiDung" />
+    <EntitySet Name="Wards" EntityType="Self.Ward" />
+    <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
+    <EntitySet Name="MSreplication_options" EntityType="Self.MSreplication_options" />
+    <EntitySet Name="spt_fallback_db" EntityType="Self.spt_fallback_db" />
+    <EntitySet Name="spt_fallback_dev" EntityType="Self.spt_fallback_dev" />
+    <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" />
+    <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" />
+    <EntitySet Name="spt_values" EntityType="Self.spt_values" />
+    <AssociationSet Name="FK__Transacti__Compu__52793849" Association="Self.FK__Transacti__Compu__52793849">
+      <End Role="Computers" EntitySet="Computers" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoices__Transa__573DED66" Association="Self.FK__Invoices__Transa__573DED66">
+      <End Role="Transactions" EntitySet="Transactions" />
+      <End Role="Invoices" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoices__UserID__5649C92D" Association="Self.FK__Invoices__UserID__5649C92D">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Invoices" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NhanVien__MaNguo__77AABCF8" Association="Self.FK__NhanVien__MaNguo__77AABCF8">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="NhanVien" EntitySet="NhanViens" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VaiTroNgu__MaNgu__7A8729A3" Association="Self.FK__VaiTroNgu__MaNgu__7A8729A3">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="VaiTroNguoiDung" EntitySet="VaiTroNguoiDungs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VaiTroNgu__MaPho__7C6F7215" Association="Self.FK__VaiTroNgu__MaPho__7C6F7215">
+      <End Role="PhongBan" EntitySet="PhongBans" />
+      <End Role="VaiTroNguoiDung" EntitySet="VaiTroNguoiDungs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Packa__536D5C82" Association="Self.FK__Transacti__Packa__536D5C82">
+      <End Role="ServicePackages" EntitySet="ServicePackages" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__UserI__51851410" Association="Self.FK__Transacti__UserI__51851410">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VaiTroNgu__MaVai__7B7B4DDC" Association="Self.FK__VaiTroNgu__MaVai__7B7B4DDC">
+      <End Role="VaiTro" EntitySet="VaiTroes" />
+      <End Role="VaiTroNguoiDung" EntitySet="VaiTroNguoiDungs" />
+    </AssociationSet>
+    <FunctionImport Name="sp_MScleanupmergepublisher" />
+    <FunctionImport Name="sp_MSrepl_startup" />
+  </EntityContainer>
+</Schema>

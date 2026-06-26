@@ -1,0 +1,61 @@
+﻿.homeindex {
+    margin-left: 50px;
+    margin-right: 50px;
+
+    .display {
+        height: 500px;
+        display: flex;
+        background-color: #d7f5bd;
+        border-radius: 10px;
+        justify-content: space-between;
+        align-items: center;
+
+        .text {
+            margin-left: 200px;
+
+            .sale {
+                width: 140px;
+                height: 30px;
+                text-align: center;
+                font-size: 19px;
+                background-color: yellow;
+                border-radius: 5px;
+            }
+
+            h2 {
+                font-size: 40px;
+            }
+
+            p {
+                margin-bottom: 40px;
+            }
+
+            a {
+                margin-top: 80px;
+                text-decoration: none;
+                background-color: black;
+                color: aliceblue;
+                padding: 10px;
+                border-radius: 10px;
+            }
+        }
+
+        .image {
+            margin-right: 200px;
+            position: relative;
+
+            img {
+                width: 500px;
+                border-radius: 10px;
+            }
+
+            .orange {
+                border-radius: 50px;
+                position: absolute;
+                padding: 30px;
+                width: 80px;
+                top: 0;
+            }
+        }
+    }
+}

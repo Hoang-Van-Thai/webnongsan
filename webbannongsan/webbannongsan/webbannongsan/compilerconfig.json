@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "Content/Site.css",
+    "inputFile": "Content/Site.scss"
+  },
+  {
+    "outputFile": "Content/stylelayout.css",
+    "inputFile": "Content/stylelayout.scss"
+  },
+  {
+    "outputFile": "Content/index.css",
+    "inputFile": "Content/index.scss"
+  },
+  {
+    "outputFile": "Content/product.css",
+    "inputFile": "Content/product.scss"
+  }
+]

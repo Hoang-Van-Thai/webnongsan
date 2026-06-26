@@ -1,0 +1,86 @@
+﻿@model webbannongsan.Models.Account
+
+@{
+    ViewBag.Title = "UpdateAddress";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+<h2>Cập nhật địa chỉ</h2>
+<form method="post" action="/Account/UpdateAddress">
+    <input type="hidden" name="AdressID" value="@ViewBag.addressID" />
+    <label for="province">Tỉnh/Thành phố</label>
+    <select id="province" name="provinceID">
+        <option value="@ViewBag.provinceDef.ProvinceID">@ViewBag.provinceDef.Name</option>
+        @foreach (var province in ViewBag.provinces)
+        {
+            <option value="@province.ProvinceID">@province.Name</option>
+        }
+    </select>
+    <label for="district">Quận</label>
+    <select id="district" name="districtID">
+        <option value="@ViewBag.districtDef.DistrictID">@ViewBag.districtDef.Name</option>
+        @foreach (var district in ViewBag.districts)
+        {
+            <option value="@district.DistrictID" data-province="@district.ProvinceID">@district.Name</option>
+        }
+    </select>
+    <label for="ward">Phường</label>
+    <select id="ward" name="wardID">
+        <option value="@ViewBag.wardDef.WardID">@ViewBag.wardDef.Name</option>
+        @foreach (var ward in ViewBag.wards)
+        {
+            <option value="@ward.WardID" data-district="@ward.DistrictID">@ward.Name</option>
+        }
+    </select>
+    <div class="homeno">
+        <label>Số nhà</label>
+        <input type="text" name="Address" value="@ViewBag.addressDef" placeholder="Nhập số nhà" />
+    </div>
+    
+    <p>@ViewBag.erorr</p>
+    <button type="submit">Lưu sửa đổi</button>
+</form>
+<script>
+    // Khi tỉnh thay đổi
+    document.getElementById("province").addEventListener("change", function () {
+        var selectedProvinceID = this.value; // Lấy mã tỉnh được chọn
+        var districtOptions = document.querySelectorAll("#district option"); // Lấy tất cả các tùy chọn của quận
+
+        // Lặp qua tất cả các tùy chọn và ẩn/hiện tùy thuộc vào provinceID
+        districtOptions.forEach(function (option) {
+            if (option.getAttribute("data-province") === selectedProvinceID || option.value === "") {
+                option.style.display = "block"; // Hiển thị các quận thuộc tỉnh đã chọn
+            } else {
+                option.style.display = "none"; // Ẩn các quận không thuộc tỉnh đã chọn
+            }
+        });
+
+        // Đặt giá trị của select district về mặc định
+        document.getElementById("district").value = "";
+        document.getElementById("ward").value = ""; // Reset select ward
+        filterWards(""); // Xóa các tùy chọn ward khi thay đổi tỉnh
+    });
+
+    // Khi quận thay đổi
+    document.getElementById("district").addEventListener("change", function () {
+        var selectedDistrictID = this.value; // Lấy mã quận được chọn
+        filterWards(selectedDistrictID); // Gọi hàm lọc phường theo quận
+    });
+
+    // Hàm lọc phường theo quận
+    function filterWards(districtID) {
+        var wardOptions = document.querySelectorAll("#ward option"); // Lấy tất cả các tùy chọn của phường
+
+        // Lặp qua tất cả các tùy chọn và ẩn/hiện tùy thuộc vào districtID
+        wardOptions.forEach(function (option) {
+            if (option.getAttribute("data-district") === districtID || option.value === "") {
+                option.style.display = "block"; // Hiển thị các phường thuộc quận đã chọn
+            } else {
+                option.style.display = "none"; // Ẩn các phường không thuộc quận đã chọn
+            }
+        });
+
+        // Đặt giá trị của select ward về mặc định
+        document.getElementById("ward").value = "";
+    }
+</script>
+<link href="~/Content/UpdateAddress.min.css" rel="stylesheet" />
